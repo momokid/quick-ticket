@@ -1,0 +1,21 @@
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\E:\\Project\\quick-ticket\\node_modules\\@opentelemetry\\instrumentation-http',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'E:\Project\quick-ticket\node_modules\@opentelemetry\instrumentation-http\node_modules\@opentelemetry\core'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'E:\\Project\\quick-ticket\\node_modules\\@opentelemetry\\instrumentation-http\\node_modules\\@opentelemetry\\core'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code ECONNRESET
+npm error syscall read
+npm error errno ECONNRESET
+npm error network request to https://registry.npmjs.org/@sentry-internal/replay/-/replay-10.11.0.tgz failed, reason: read ECONNRESET
+npm error network This is a problem related to network connectivity.
+npm error network In most cases you are behind a proxy or have bad network settings.
+npm error network
+npm error network If you are behind a proxy, please make sure that the
+npm error network 'proxy' config is set properly.  See: 'npm help config'
+npm error A complete log of this run can be found in: C:\Users\Anwar Sadat Ayub\AppData\Local\npm-cache\_logs\2025-09-13T20_11_11_433Z-debug-0.log

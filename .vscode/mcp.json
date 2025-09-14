@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/mcp/garimo-enovations-consult/quick-ticket",
+      "type": "http"
+    }
+  }
+}
