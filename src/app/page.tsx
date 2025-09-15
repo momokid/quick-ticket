@@ -1,9 +1,31 @@
-import Image from "next/image";
+import Link from "next/link";
+import { FaTicketAlt } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="font-sans">
-      <span>Welcome</span>
-    </div>
+    <main className="flex flex-col text-center items-center justify-center min-h-screen px-4">
+      <FaTicketAlt className="mx-auto mb04 text-red-600" size={60} />
+      <h1 className="text-4l md:text-5xl font-bold mb-4 text-blue-600">
+        Welcome to Quick Ticket
+      </h1>
+      <p className="text-lg text-gray-600 mb-8">
+        Fast and simple support ticket management system.
+      </p>
+
+      <div className="flex flex-col md:clex-row gap-4 justify-center animate-slide opacity-0">
+        <Link
+          href="tickets/new"
+          className="bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition"
+        > 
+          Submit a ticket
+        </Link>
+        <Link
+          href="/tickets"
+          className="bg-red-50 text-gray-700 px-6 py-3 rounded shadow hover:bg-blue-200 transition"
+        >
+          View Tickets
+        </Link>
+      </div>
+    </main>
   );
 }
