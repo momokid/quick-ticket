@@ -25,7 +25,7 @@ export async function signAuthToken(payload: any) {
 //Decrypt and verify
 export async function verifyAuthToken<T>(token: string): Promise<T> {
   try {
-    const payload = await jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, secret);
 
     return payload as T;
   } catch (error) {
