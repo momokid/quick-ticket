@@ -109,3 +109,64 @@ export async function logOutUser(): Promise<{
     };
   }
 }
+
+//Log user in
+export async function loginUser(
+  prevState: ResponseResult,
+  formData: FormData
+): Promise<ResponseResult> {
+  try {
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    if (!email || !password) {
+      logEvent(
+        "Validation erorr: Missing fields",
+        "auth",
+        { email },
+        "warning"
+      );
+      return { success: false, message: "Email and password are required" };
+    }
+
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user || !user.password) {
+      logEvent(
+        `Login failed: user with email ${email} not found`,
+        "auth",
+        { email },
+        "warning"
+      );
+      return { success: false, message: "Invalid email" };
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      logEvent(
+        `Login failed: Incorrect password`,
+        "auth",
+        { email },
+        "warning"
+      );
+
+      return { success: false, message: "Invalid email or password" };
+    }
+
+    const token = await signAuthToken({ userId: user.id });
+    await setAuthCookie(token);
+
+    return { success: true, message: "Log in successfull" };
+  } catch (error) {
+    logEvent(
+      `Unexpected error during login`,
+      "auth",
+      { error },
+      "error",
+      error
+    );
+
+    return { success: false, message: `Error during login: ${error}` };
+  }
+}
