@@ -13,11 +13,7 @@ export async function getCurrentUser() {
 
     const payload = (await verifyAuthToken(token)) as AuthPayload;
 
-    console.log("PAYLOAD Data b4:", payload.userId);
-
     if (!payload?.userId) return null;
-
-    console.log("PAYLOAD Data AFTER:", payload);
 
     const user = await prisma.user.findUnique({
       where: { id: payload.userId },
@@ -27,7 +23,6 @@ export async function getCurrentUser() {
         name: true,
       },
     });
-    console.log("User from Token:", user);
     return user;
   } catch (error) {
     console.log("Error getting the current user", error);
