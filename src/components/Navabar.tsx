@@ -1,10 +1,9 @@
 import { getCurrentUser } from "@/lib/current.user";
 import Link from "next/link";
+import LogOutButton from "./LogOutButton";
 
 const Navbar = async () => {
   const user = await getCurrentUser();
-
-  console.log("User not:", user);
 
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
@@ -28,14 +27,7 @@ const Navbar = async () => {
             >
               My Tickets
             </Link>
-            <form>
-              <button
-                type="submit"
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-              >
-                Logout
-              </button>
-            </form>
+            <LogOutButton />
           </>
         ) : (
           <>
