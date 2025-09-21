@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const NewTicketForm = () => {
-  const [state, formAction] = useActionState(createTicket, {
+  const [state, formAction, isPending] = useActionState(createTicket, {
     success: false,
     message: "",
   });
@@ -52,8 +52,9 @@ const NewTicketForm = () => {
         <button
           className="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition disabled:opacity-50"
           type="submit"
+          disabled={isPending}
         >
-          Submit
+          {isPending ? "Submitting ticket" : "Submit"}
         </button>
       </form>
     </div>
